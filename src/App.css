@@ -1,15 +1,30 @@
 .App {
     text-align: center;
     font-size: 35px;
-    margin-top: 20%;
+    /* margin-top: 10%; */
+    background: url('./AWS-Lambda.png') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    color: white;
+    background-color: black;
 }
 
 .App-title {
+    padding-top: 200px;
+    padding-bottom: 100px;
     font-size: 50px;
 }
 
 .Clock-days, .Clock-hours, .Clock-minutes, .Clock-seconds {
     display: inline;
     margin: 10px;
+    font-family: monospace;
+}
+
+.Deadline-input {
+    font-size: 25px;
+    margin: 5px;
+    text-align: center;
 }
 
