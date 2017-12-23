@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Clock from './Clock';
-import './App.css';
 import styled from 'styled-components';
 import img from './AWS-Lambda.png';
 
@@ -19,6 +18,12 @@ const Title = styled.div`
   padding-bottom: 100px;
   font-size: 50px;
 `
+const Input = styled.input`
+    font-size: 25px;
+    margin: 5px;
+    text-align: center;
+    color: black;
+` 
 class App extends Component {
   constructor(props) {
     super(props);
@@ -28,8 +33,15 @@ class App extends Component {
       goal: 'Countdown to Graduation'
     }
   }
-  changeDeadline() {
-    this.setState({deadline: this.state.newDeadline});
+  changeDeadline = (event) => {
+    event.preventDefault();
+    this.setState({
+      deadline: this.state.newDeadline,
+      newDeadline: ''
+    });
+  }
+  changeNewDeadline = (event) => {
+    this.setState({ newDeadline: event.target.value });
   }
 
   render() {
@@ -39,24 +51,25 @@ class App extends Component {
           {this.state.goal} <br />{this.state.deadline}
         </Title> 
         <Clock deadline={this.state.deadline}/>
-          <form>
-            <input
+          <form onSubmit={this.changeDeadline}>
+            <Input
+              value={this.state.newDeadline}
               className="Deadline-input"
               placeholder='new date'
-              onChange={event => this.setState({newDeadline: event.target.value})}
-              onKeyPress={event => {
-                if (event.key === 'Enter') {
-                  this.changeDeadline()
-                }
-              }}
+              onChange={this.changeNewDeadline}
             />
-            <button onClick={() => this.changeDeadline()}>
-              Submit
-            </button>
           </form>   
         </Wrapper>
     )
   }
 }
+ // <button onClick={() => this.changeDeadline()}>
+            //   Submit
+            // </button>
 
+            // onKeyPress={event => {
+            //   if (event.key === 'Enter') {
+            //     this.changeDeadline()
+            //   }
+            // }}
 export default App;
